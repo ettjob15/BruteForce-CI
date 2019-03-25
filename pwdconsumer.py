@@ -1,5 +1,7 @@
 import threading
 import queue
+from itertools import chain, product
+
 
 class PwdConsumer(threading.Thread):
 
@@ -22,5 +24,9 @@ class PwdConsumer(threading.Thread):
             if not password is None:
                 print("Testing with '123' = " +str(password.check("123")))
                 character='a'
-                for ch in range('a','z'):
+                print(self.bruteforce(4))
 
+    def bruteforce(charset, maxlength):
+        return (''.join(candidate)
+                for candidate in chain.from_iterable(product(charset, repeat=i)
+                                                     for i in range(1, maxlength + 1)))

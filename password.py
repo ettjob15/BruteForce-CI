@@ -7,3 +7,6 @@ class Password:
 
     def check(self,test):
         return self.pwd == test
+
+
+
